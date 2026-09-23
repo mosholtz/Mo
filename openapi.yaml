@@ -1,0 +1,43 @@
+openapi: 3.0.1
+
+info:
+  title: Business Data Cleaner
+  version: 1.0.0
+  description: >
+    Clean and normalize customer and business data.
+    Standardizes names, email addresses and US phone numbers.
+
+servers:
+  - url: https://RENDER_URL_GOES_HERE
+
+paths:
+
+  /health:
+    get:
+      summary: Health check
+      responses:
+        '200':
+          description: Service operational
+
+  /clean:
+    post:
+      summary: Clean business or customer data
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            example:
+              name: "  JOHN   SMITH "
+              email: " TEST@EXAMPLE.COM "
+              phone: "(305) 555-1212"
+
+      responses:
+        '200':
+          description: Normalized data
+          content:
+            application/json:
+              schema:
+                type: object
